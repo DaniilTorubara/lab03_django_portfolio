@@ -1,0 +1,20 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<h2>My first blog!</h2>
+
+<h2>{{ records.count }} Blog{{ records.count|pluralize }}:</h2>
+
+{% for rec in records %}
+
+<a href = "{% url 'blog:detail' rec.id %}"><h2>{{ rec.title }}</h2></a>
+<h5>{{ rec.date|date:'j F y' }}</h5>
+<p>{{ rec.description|safe|truncatechars:100 }}</p>
+{% if rec.url %}
+<br><a href = "{{ rec.url }}">Link</a></br>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}
